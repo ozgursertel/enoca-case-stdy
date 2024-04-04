@@ -15,8 +15,7 @@ public class CustomerController {
 
     @GetMapping
     public List<Customer> findAll(){
-        List<Customer> c = customerService.getAll();
-        return c;
+        return customerService.getAll();
     }
     @PostMapping
     public Customer addCustomer(@RequestBody Customer customer){

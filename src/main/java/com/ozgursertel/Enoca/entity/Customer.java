@@ -26,7 +26,6 @@ public class Customer extends BaseEntity{
     @Column(name = "email")
     private String email;
 
-    @JsonIgnore
    @OneToOne(mappedBy = "customer")
     private Cart cart;
 

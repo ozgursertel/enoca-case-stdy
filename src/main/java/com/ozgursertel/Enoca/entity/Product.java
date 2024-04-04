@@ -3,11 +3,21 @@ package com.ozgursertel.Enoca.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @Table(name = "product")
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Product extends BaseEntity{
     @Column(name = "name")
     private String name;
@@ -21,12 +31,8 @@ public class Product extends BaseEntity{
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_cart",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "cart_id"))
+    @ManyToMany(mappedBy = "productInCart",cascade = CascadeType.ALL)
     @JsonIgnore
-    Set<Cart> cartInProduct;
+    Set<Cart> cartInProduct = new HashSet<>();
 
 }
