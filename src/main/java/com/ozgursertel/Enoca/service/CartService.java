@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CartService {
@@ -52,6 +53,14 @@ public class CartService {
         Cart cart = cartRepository.findById(cartId).get();
         cart.getProductInCart().addAll(products);
         return cartRepository.save(cart);
+    }
+
+    public Cart removeProductFromCart(Long cartId,Long productId){
+        Cart cart = cartRepository.findById(cartId).get();
+        Set<Product> products = cart.getProductInCart();
+        products.remove(productRepository.findById(productId).get());
+        cart.setProductInCart(products);
+        return save(cart);
     }
 
     public Cart emptyCart(Long cartId){

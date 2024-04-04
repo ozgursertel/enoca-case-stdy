@@ -57,4 +57,8 @@ public class CartController {
     public Cart emptyProduct(@PathVariable Long id){
         return cartService.emptyCart(id);
     }
+    @PutMapping("/remove{productId}/{cartId}")
+    public Cart emptyProduct(@PathVariable Long productId,@PathVariable Long cartId){
+        return cartService.removeProductFromCart(cartId,productId);
+    }
 }

@@ -29,6 +29,7 @@ public class Customer extends BaseEntity{
    @OneToOne(mappedBy = "customer")
     private Cart cart;
 
+   @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders;
 }
